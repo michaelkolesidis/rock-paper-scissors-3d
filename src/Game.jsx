@@ -1,6 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Text, Float } from "@react-three/drei";
+import { OrbitControls, Text, Text3D, Float } from "@react-three/drei";
 import { Rock } from "./Rock";
 import { Paper } from "./Paper";
 import { Scissors } from "./Scissors";
@@ -31,6 +31,16 @@ export default function Game() {
     }
   };
 
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    if (hovered) {
+      // document.body.style.cursor = "pointer";
+    } else {
+      // document.body.style.cursor = "auto";
+    }
+  }, [hovered]);
+
   return (
     <Canvas>
       <ambientLight />
@@ -39,16 +49,22 @@ export default function Game() {
         position={[-2, -2.35, 0]}
         scale={[5, 5, 5]}
         onClick={() => handleClick("rock")}
+        onPointerOver={() => setHovered(true)}
+        onPointerOut={() => setHovered(false)}
       />
       <Paper
         position={[0, -2, 0]}
         rotation={[0, Math.PI / 4, 0]}
         onClick={() => handleClick("paper")}
+        onPointerOver={() => setHovered(true)}
+        onPointerOut={() => setHovered(false)}
       />
       <Scissors
         position={[2, -2.3, 0]}
         scale={[5.5, 5.5, 5.5]}
         onClick={() => handleClick("scissors")}
+        onPointerOver={() => setHovered(true)}
+        onPointerOut={() => setHovered(false)}
       />
       <OrbitControls />
       <Float rotationIntensity={1} floatIntensity={0.25}>
@@ -59,7 +75,7 @@ export default function Game() {
             font="./fonts/nickname.otf"
             color="black"
           >
-            You chose {player}
+            You chose {player},
           </Text>
         )}
         {computer && (
@@ -69,7 +85,7 @@ export default function Game() {
             font="./fonts/nickname.otf"
             color="black"
           >
-            Computer {computer}
+            Computer {computer}.
           </Text>
         )}
         {winner && (
