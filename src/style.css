@@ -1,0 +1,58 @@
+@font-face {
+  font-family: "Nickname";
+  src: url("../fonts/nickname.woff2");
+}
+
+@font-face {
+  font-family: "SF Pro";
+  src: url("../fonts/sf_pro.woff2");
+}
+
+/***********/
+/* GENERAL */
+/***********/
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  font-family: "SF Pro";
+}
+
+html,
+body,
+#root {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(250, 144, 248);
+}
+
+/**************/
+/* LOGO       */
+/**************/
+.logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  margin: 1em;
+  pointer-events: none;
+  width: 130px;
+}
+
+/**************/
+/* AUTHOR     */
+/**************/
+.author {
+  font-family: "Nickname";
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 0.5em;
+  font-size: 1.2em;
+}
