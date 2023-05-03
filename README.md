@@ -1,10 +1,10 @@
 ![Rock Paper Scissors 3D logo](rps3d.png)
 
-The classic game of rock, paper, scissors in 3D!
+**The classic game of rock, paper, scissors in 3D!**
 
 ## Technologies
 
-The core technologies use are JavaScript and WebGL. The following libraries and tools are used:
+The core technologies used are JavaScript and WebGL. The following libraries and tools are used:
 
 | Name              | License | Description                                  |
 | ----------------- | :-----: | -------------------------------------------- |

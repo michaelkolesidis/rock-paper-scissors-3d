@@ -1,13 +1,22 @@
-import React, { forwardRef } from "react";
+import { forwardRef, useRef } from "react";
+import * as THREE from "three";
+import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 
-export const Scissors = forwardRef((props, ref) => {
+export const Scissors = (props) => {
   const { nodes, materials } = useGLTF("./models/scissors.glb");
+
+  const scissors = useRef();
+
+  useFrame((state, delta) => {
+    scissors.current.rotation.z += delta * 0.25;
+  });
+
   return (
     <group {...props} dispose={null}>
       <group
         name="Scissors1"
-        ref={ref}
+        ref={scissors}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={100}
       >
@@ -28,6 +37,6 @@ export const Scissors = forwardRef((props, ref) => {
       </group>
     </group>
   );
-});
+};
 
 useGLTF.preload("./models/scissors.glb");

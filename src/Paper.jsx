@@ -1,12 +1,21 @@
-import React, { forwardRef } from "react";
+import { forwardRef, useRef } from "react";
+import * as THREE from "three";
+import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 
-export const Paper = forwardRef((props, ref) => {
+export const Paper = (props) => {
   const { nodes, materials } = useGLTF("./models/paper.glb");
+
+  const paper = useRef();
+
+  useFrame((state, delta) => {
+    paper.current.rotation.y += delta * 0.25;
+  });
+
   return (
     <group {...props} dispose={null}>
       <mesh
-        ref={ref}
+        ref={paper}
         name="Cube_Cube001"
         castShadow
         receiveShadow
@@ -15,6 +24,6 @@ export const Paper = forwardRef((props, ref) => {
       />
     </group>
   );
-});
+};
 
 useGLTF.preload("./models/paper.glb");
