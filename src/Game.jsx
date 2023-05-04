@@ -44,21 +44,24 @@ export default function Game() {
   /**
    * Mode
    */
-  let limit;
-  switch (mode) {
-    case "threeWins":
-      limit = 3;
-      break;
-    case "fiveWins":
-      limit = 5;
-      break;
-    case "sevenWins":
-      limit = 7;
-      break;
-    case "endLess":
-      limit = Infinity;
-      break;
-  }
+  const [limit, setLimit] = useState(null);
+
+  useEffect(() => {
+    switch (mode) {
+      case "threeWins":
+        setLimit(3);
+        break;
+      case "fiveWins":
+        setLimit(5);
+        break;
+      case "sevenWins":
+        setLimit(7);
+        break;
+      case "endless":
+        setLimit(Infinity);
+        break;
+    }
+  }, [mode]);
 
   /**
    * Game Logic
@@ -142,9 +145,6 @@ export default function Game() {
     window.localStorage.setItem("playerScore", 0);
     setComputerScore(0);
     window.localStorage.setItem("computerScore", 0);
-    // setPlayer(null);
-    // setComputer(null);
-    // setWinner(null);
   };
 
   /**
@@ -253,6 +253,7 @@ export default function Game() {
         position: [0, 0, cameraY],
       }}
     >
+      <OrbitControls />
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <Rock
@@ -279,7 +280,6 @@ export default function Game() {
         onPointerOver={handleHover}
         onPointerOut={handleUnhover}
       />
-      <OrbitControls />
       <Float rotationIntensity={1} floatIntensity={0.25}>
         {player && (
           <Text

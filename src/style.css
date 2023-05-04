@@ -80,9 +80,16 @@ body,
 }
 
 .individual-score {
+  position: relative;
   margin-right: 1.5vw;
   margin-left: 1.5vw;
   font-size: min(4vw, 5vh);
+}
+
+.mode-info {
+  position: absolute;
+  top: -1.4vh;
+  font-size: min(1.4vw, 2vh);
 }
 
 /*******************/

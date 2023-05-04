@@ -18,6 +18,28 @@ export default function Interface() {
   const setComputerScore = useGame((state) => state.setComputerScore);
   const setMode = useGame((state) => state.setMode);
 
+  /**
+   * Mode
+   */
+  const [modeName, setModeName] = useState(mode);
+
+  useEffect(() => {
+    switch (mode) {
+      case "threeWins":
+        setModeName("Three Wins");
+        break;
+      case "fiveWins":
+        setModeName("Five Wins");
+        break;
+      case "sevenWins":
+        setModeName("Seven Wins");
+        break;
+      case "endless":
+        setModeName("endless");
+        break;
+    }
+  }, [mode]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const clearData = () => {
@@ -81,7 +103,10 @@ export default function Interface() {
         <img className="author" src={MLogo} alt="author's logo"></img>
       </a>
       <div className="score">
-        <div className="individual-score">Round {round}</div>
+        <div className="individual-score">
+          Round {round}
+          <div className="mode-info">{modeName}</div>
+        </div>
         <div className="individual-score">You: {playerScore}</div>
         <div className="individual-score">Computer: {computerScore}</div>
       </div>
