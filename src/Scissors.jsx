@@ -1,5 +1,8 @@
-import { forwardRef, useRef, useState } from "react";
-import * as THREE from "three";
+// Copyright (c) 2023 Michael Kolesidis (michael.kolesidis@gmail.com)
+// Licensed under the GNU Affero General Public License v3.0.
+// https://www.gnu.org/licenses/gpl-3.0.html
+
+import { forwardRef, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 

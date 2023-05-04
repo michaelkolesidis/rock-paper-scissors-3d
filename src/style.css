@@ -1,11 +1,6 @@
 @font-face {
   font-family: "Nickname";
-  src: url("../fonts/nickname.woff2");
-}
-
-@font-face {
-  font-family: "SF Pro";
-  src: url("../fonts/sf_pro.woff2");
+  src: url("../fonts/nickname.otf");
 }
 
 /***********/
@@ -18,7 +13,6 @@
   user-select: none;
   -webkit-user-drag: none;
   -moz-user-drag: none;
-  /* font-family: "SF Pro"; */
   font-family: "Nickname";
   box-sizing: border-box;
   color: rgb(31, 31, 31);
@@ -38,7 +32,6 @@ body,
     rgba(255, 173, 214, 1) 55.7%,
     rgba(162, 186, 245, 1) 81.8%
   );
-  /* background: rgb(250, 144, 248); */
 }
 
 /**************/
@@ -104,10 +97,8 @@ body,
   border: 3px solid #ffffff;
   border-radius: 60px;
   padding: 8px;
-  /* margin-left: 20px; */
   line-height: 10px;
   cursor: pointer;
-  /* cursor: url("./cursors/windows95-pointer.png"), pointer; */
   transition: opacity 0.5s cubic-bezier(0.19, 1.51, 0.29, 0.99);
 }
 

@@ -6,7 +6,7 @@
 
 ## Technologies
 
-The core technologies used are JavaScript and WebGL. The following libraries and tools are used:
+The core technologies used are _JavaScript_ and _WebGL_. The following libraries and tools are used:
 
 | Name              | License | Description                                  |
 | ----------------- | :-----: | -------------------------------------------- |

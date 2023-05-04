@@ -1,5 +1,9 @@
+// Copyright (c) 2023 Michael Kolesidis (michael.kolesidis@gmail.com)
+// Licensed under the GNU Affero General Public License v3.0.
+// https://www.gnu.org/licenses/gpl-3.0.html
+
 import { useState, useRef, useEffect } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { Image, OrbitControls, Text, Float } from "@react-three/drei";
 import { Rock } from "./Rock";
 import { Paper } from "./Paper";
