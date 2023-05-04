@@ -67,7 +67,7 @@ export default function Game() {
    * Game Logic
    */
   useEffect(() => {
-    if (Number(round) === 1) {
+    if (Number(round) === 0) {
       restart();
       window.localStorage.setItem("playerScore", 0);
       window.localStorage.setItem("computerScore", 0);
@@ -77,7 +77,7 @@ export default function Game() {
       setWinner(null);
     }
 
-    if (Number(round) === 2) {
+    if (Number(round) === 1) {
       start();
       window.localStorage.setItem("phase", "playing");
     }
@@ -140,7 +140,7 @@ export default function Game() {
     restart();
     window.localStorage.setItem("phase", "ready");
     resetRound();
-    window.localStorage.setItem("round", 1);
+    window.localStorage.setItem("round", 0);
     setPlayerScore(0);
     window.localStorage.setItem("playerScore", 0);
     setComputerScore(0);
@@ -196,7 +196,7 @@ export default function Game() {
     if (storedRound !== null) {
       setRound(storedRound);
     } else {
-      window.localStorage.setItem("round", 1);
+      window.localStorage.setItem("round", 0);
     }
 
     // Phase
@@ -335,7 +335,7 @@ export default function Game() {
               won {computerWinsTotal})
             </Text>
             <Image
-              url="/assets/replay.png"
+              url="./icons/replay.png"
               position={[0, -0.8, 0]}
               scale={[0.6, 0.6, 0.6]}
               transparent
