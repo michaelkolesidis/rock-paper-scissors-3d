@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Text, Text3D, Float } from "@react-three/drei";
+import { Image, OrbitControls, Text, Float } from "@react-three/drei";
 import { Rock } from "./Rock";
 import { Paper } from "./Paper";
 import { Scissors } from "./Scissors";
@@ -12,45 +12,134 @@ export default function Game() {
   const [winner, setWinner] = useState(null);
 
   const options = ["rock", "paper", "scissors"];
-
+  // Mode
+  const mode = useGame((state) => state.mode);
+  const setMode = useGame((state) => state.setMode);
+  // Round
   const round = useGame((state) => state.round);
   const nextRound = useGame((state) => state.nextRound);
   const setRound = useGame((state) => state.setRound);
   const resetRound = useGame((state) => state.resetRound);
-
+  // Phase
+  const phase = useGame((state) => state.phase);
+  const setPhase = useGame((state) => state.setPhase);
+  const start = useGame((state) => state.start);
+  const restart = useGame((state) => state.restart);
+  const end = useGame((state) => state.end);
+  // Current score
   const playerScore = useGame((state) => state.playerScore);
   const setPlayerScore = useGame((state) => state.setPlayerScore);
-
   const computerScore = useGame((state) => state.computerScore);
   const setComputerScore = useGame((state) => state.setComputerScore);
+  // Total wins
+  const playerWinsTotal = useGame((state) => state.playerWinsTotal);
+  const setplayerWinsTotal = useGame((state) => state.setplayerWinsTotal);
+  const computerWinsTotal = useGame((state) => state.computerWinsTotal);
+  const setComputerWinsTotal = useGame((state) => state.setComputerWinsTotal);
 
+  /**
+   * Mode
+   */
+  let limit;
+  switch (mode) {
+    case "threeWins":
+      limit = 3;
+      break;
+    case "fiveWins":
+      limit = 5;
+      break;
+    case "sevenWins":
+      limit = 7;
+      break;
+    case "endLess":
+      limit = Infinity;
+      break;
+  }
+
+  /**
+   * Game Logic
+   */
+  useEffect(() => {
+    if (Number(round) === 1) {
+      restart();
+      window.localStorage.setItem("playerScore", 0);
+      window.localStorage.setItem("computerScore", 0);
+      window.localStorage.setItem("phase", "ready");
+    }
+
+    if (Number(round) === 2) {
+      start();
+      window.localStorage.setItem("phase", "playing");
+    }
+
+    if (Number(playerScore) === limit || Number(computerScore) === limit) {
+      end();
+      window.localStorage.setItem("phase", "ended");
+
+      if (winner === "player") {
+        setplayerWinsTotal(String(Number(playerWinsTotal) + 1));
+        window.localStorage.setItem(
+          "playerWinsTotal",
+          String(Number(playerWinsTotal) + 1)
+        );
+      } else {
+        setComputerWinsTotal(String(Number(computerWinsTotal) + 1));
+        window.localStorage.setItem(
+          "computerWinsTotal",
+          String(Number(computerWinsTotal) + 1)
+        );
+      }
+    }
+  }, [round]);
+
+  /**
+   * Handle clicks and round winning conditions
+   */
   const handleClick = (option) => {
-    nextRound();
-    window.localStorage.setItem("round", String(Number(round) + 1));
-    const computerOption = options[Math.floor(Math.random() * options.length)];
+    if (phase !== "ended") {
+      nextRound();
+      window.localStorage.setItem("round", String(Number(round) + 1));
+      const computerOption =
+        options[Math.floor(Math.random() * options.length)];
 
-    setPlayer(option);
-    setComputer(computerOption);
+      setPlayer(option);
+      setComputer(computerOption);
 
-    if (option === computerOption) {
-      setWinner("tie");
-    } else if (
-      (option === "rock" && computerOption === "scissors") ||
-      (option === "paper" && computerOption === "rock") ||
-      (option === "scissors" && computerOption === "paper")
-    ) {
-      setWinner("player");
-      setPlayerScore(String(Number(playerScore) + 1));
-      window.localStorage.setItem("playerScore", Number(playerScore) + 1);
-
-    } else {
-      setWinner("computer");
-      setComputerScore(String(Number(computerScore) + 1));
-      window.localStorage.setItem("computerScore", Number(computerScore) + 1);
-
+      if (option === computerOption) {
+        setWinner("tie");
+      } else if (
+        (option === "rock" && computerOption === "scissors") ||
+        (option === "paper" && computerOption === "rock") ||
+        (option === "scissors" && computerOption === "paper")
+      ) {
+        setWinner("player");
+        setPlayerScore(String(Number(playerScore) + 1));
+        window.localStorage.setItem("playerScore", Number(playerScore) + 1);
+      } else {
+        setWinner("computer");
+        setComputerScore(String(Number(computerScore) + 1));
+        window.localStorage.setItem("computerScore", Number(computerScore) + 1);
+      }
     }
   };
 
+  /**
+   * Handle restart
+   */
+  const handleRestart = () => {
+    restart();
+    window.localStorage.setItem("phase", "ready");
+    resetRound();
+    window.localStorage.setItem("round", 1);
+    setPlayerScore(0);
+    window.localStorage.setItem("playerScore", 0);
+    setComputerScore(0);
+    window.localStorage.setItem("computerScore", 0);
+  };
+
+  /**
+   * Objects
+   */
   const rock = useRef();
   const paper = useRef();
   const scissors = useRef();
@@ -75,15 +164,23 @@ export default function Game() {
     }
   }, [hovered]);
 
+  /**
+   * Camera
+   */
   let cameraY = window.innerWidth < 600 ? 8 : 5;
 
-  // Storage
-  const playerWinsTotal = useGame((state) => state.playerWinsTotal);
-  const setplayerWinsTotal = useGame((state) => state.setplayerWinsTotal);
-  const computerWinsTotal = useGame((state) => state.computerWinsTotal);
-  const setComputerWinsTotal = useGame((state) => state.setComputerWinsTotal);
-
+  /**
+   * Storage and state initiation
+   */
   useEffect(() => {
+    // Mode
+    let storedMode = window.localStorage.getItem("mode");
+    if (storedMode !== null) {
+      setMode(storedMode);
+    } else {
+      window.localStorage.setItem("mode", "fiveWins");
+    }
+
     // Round
     let storedRound = window.localStorage.getItem("round");
     if (storedRound !== null) {
@@ -92,7 +189,18 @@ export default function Game() {
       window.localStorage.setItem("round", 1);
     }
 
-    // // Player current score
+    // Phase
+    let storedPhase = window.localStorage.getItem("phase");
+    if (storedPhase !== null) {
+      if (storedPhase === "ended") {
+        handleRestart();
+      }
+      setPhase(storedPhase);
+    } else {
+      window.localStorage.setItem("phase", "ready");
+    }
+
+    // Player current score
     let storedPlayerScore = window.localStorage.getItem("playerScore");
     if (storedPlayerScore !== null) {
       setPlayerScore(storedPlayerScore);
@@ -108,18 +216,22 @@ export default function Game() {
       window.localStorage.setItem("computerScore", 0);
     }
 
-    // // Total wins - player
-    // playerWinsTotal = window.localStorage.getItem("playerWinsTotal");
-    // if (playerWinsTotal === null) {
-    //   playerWinsTotal = 0;
-    //   window.localStorage.setItem("playerWinsTotal", 0);
-    // }
-    // // Totals wins - computer
-    // computerWinsTotal = window.localStorage.getItem("computerWinsTotal");
-    // if (computerWinsTotal === null) {
-    //   computerWinsTotal = 0;
-    //   window.localStorage.setItem("computerWinsTotal", 0);
-    // }
+    // Player total wins
+    let storedPlayerWinsTotal = window.localStorage.getItem("playerWinsTotal");
+    if (storedPlayerWinsTotal !== null) {
+      setplayerWinsTotal(storedPlayerWinsTotal);
+    } else {
+      window.localStorage.setItem("playerWinsTotal", 0);
+    }
+
+    // Computer total wins
+    let storedComputerWinsTotal =
+      window.localStorage.getItem("computerWinsTotal");
+    if (storedComputerWinsTotal !== null) {
+      setComputerWinsTotal(storedComputerWinsTotal);
+    } else {
+      window.localStorage.setItem("computerWinsTotal", 0);
+    }
   }, []);
 
   return (
@@ -164,7 +276,7 @@ export default function Game() {
             position={[0, 2.5, 0]}
             fontSize={0.4}
             font="./fonts/nickname.otf"
-            color="black"
+            color={0x313131}
           >
             You chose {player}
           </Text>
@@ -174,7 +286,7 @@ export default function Game() {
             position={[0, 2, 0]}
             fontSize={0.4}
             font="./fonts/nickname.otf"
-            color="black"
+            color={0x313131}
           >
             Computer chose {computer}
           </Text>
@@ -184,14 +296,45 @@ export default function Game() {
             position={[0, 1, 0]}
             fontSize={0.7}
             font="./fonts/nickname.otf"
-            color="black"
+            color={0x313131}
           >
             {winner === "tie"
-              ? "It is a tie!"
+              ? `It is a tie!`
               : winner === "player"
-              ? "You win!"
-              : "Computer wins!"}
+              ? `You win${phase !== "ended" ? "!" : ""}`
+              : `Computer wins${phase !== "ended" ? "!" : ""}`}
           </Text>
+        )}
+        {phase === "ended" && (
+          <>
+            <Text
+              position={[0, 0.2, 0]}
+              fontSize={1}
+              font="./fonts/nickname.otf"
+              color={0x313131}
+            >
+              The Game!
+            </Text>
+            <Text
+              position={[0, -0.3, 0]}
+              fontSize={0.17}
+              font="./fonts/nickname.otf"
+              color={0x313131}
+            >
+              (You have won {playerWinsTotal} games in total and computer has
+              won {computerWinsTotal})
+            </Text>
+            <Image
+              url="/assets/replay.png"
+              position={[0, -0.8, 0]}
+              scale={[0.6, 0.6, 0.6]}
+              transparent
+              opacity={0.75}
+              onClick={() => handleRestart()}
+              onPointerOver={handleHover}
+              onPointerOut={handleUnhover}
+            />
+          </>
         )}
       </Float>
     </Canvas>

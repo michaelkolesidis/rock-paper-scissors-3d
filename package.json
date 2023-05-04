@@ -1,5 +1,6 @@
 {
   "name": "rock-paper-scissors-3d",
+  "author": "Michael Kolesidis",
   "private": true,
   "version": "0.0.0",
   "type": "module",

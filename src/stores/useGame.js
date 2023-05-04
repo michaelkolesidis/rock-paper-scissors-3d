@@ -27,24 +27,6 @@ export default create(
       /**
        * Scoring
        */
-      playerWinsTotal: 0,
-      setplayerWinsTotal: (wins) => {
-        set(() => {
-          return {
-            playerWinsTotal: wins,
-          };
-        });
-      },
-
-      computerWinsTotal: 0,
-      setComputerWinsTotal: (wins) => {
-        set(() => {
-          return {
-            computerWinsTotal: wins,
-          };
-        });
-      },
-
       playerScore: 0,
       setPlayerScore: (score) => {
         set(() => {
@@ -63,18 +45,62 @@ export default create(
         });
       },
 
-      startTime: 0,
-      endTime: 0,
+      playerWinsTotal: 0,
+      setplayerWinsTotal: (wins) => {
+        set(() => {
+          return {
+            playerWinsTotal: wins,
+          };
+        });
+      },
+
+      computerWinsTotal: 0,
+      setComputerWinsTotal: (wins) => {
+        set(() => {
+          return {
+            computerWinsTotal: wins,
+          };
+        });
+      },
+
+      /**
+       * Game mode
+       */
+      mode: "fiveWins", // "threeWins", "sevenWins", "endless"
+      setMode: (gameMode) => {
+        set(() => {
+          return {
+            mode: gameMode,
+          };
+        });
+      },
+
+      /**
+       * Time
+       */
+      // startTime: 0,
+      // endTime: 0,
 
       /**
        * Phases
        */
-      phase: "ready",
+      phase: "ready", // "playing", "ended"
+
+      setPhase: (gamePhase) => {
+        set(() => {
+          return {
+            phase: gamePhase,
+          };
+        });
+      },
 
       start: () => {
         set((state) => {
           if (state.phase === "ready") {
-            return { phase: "playing", startTime: Date.now() };
+            return {
+              phase: "playing",
+              // startTime: Date.now()
+            };
           }
           return {};
         });
@@ -92,7 +118,10 @@ export default create(
       end: () => {
         set((state) => {
           if (state.phase === "playing") {
-            return { phase: "ended", endTime: Date.now() };
+            return {
+              phase: "ended",
+              // endTime: Date.now()
+            };
           }
           return {};
         });
