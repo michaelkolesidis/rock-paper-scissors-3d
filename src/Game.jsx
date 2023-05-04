@@ -18,9 +18,15 @@ export default function Game() {
   const setRound = useGame((state) => state.setRound);
   const resetRound = useGame((state) => state.resetRound);
 
+  const playerScore = useGame((state) => state.playerScore);
+  const setPlayerScore = useGame((state) => state.setPlayerScore);
+
+  const computerScore = useGame((state) => state.computerScore);
+  const setComputerScore = useGame((state) => state.setComputerScore);
+
   const handleClick = (option) => {
     nextRound();
-    window.localStorage.setItem("round", String(Number(round) + 1))
+    window.localStorage.setItem("round", String(Number(round) + 1));
     const computerOption = options[Math.floor(Math.random() * options.length)];
 
     setPlayer(option);
@@ -34,8 +40,14 @@ export default function Game() {
       (option === "scissors" && computerOption === "paper")
     ) {
       setWinner("player");
+      setPlayerScore(String(Number(playerScore) + 1));
+      window.localStorage.setItem("playerScore", Number(playerScore) + 1);
+
     } else {
       setWinner("computer");
+      setComputerScore(String(Number(computerScore) + 1));
+      window.localStorage.setItem("computerScore", Number(computerScore) + 1);
+
     }
   };
 
@@ -70,20 +82,30 @@ export default function Game() {
   const setplayerWinsTotal = useGame((state) => state.setplayerWinsTotal);
   const computerWinsTotal = useGame((state) => state.computerWinsTotal);
   const setComputerWinsTotal = useGame((state) => state.setComputerWinsTotal);
-  const playerScore = useGame((state) => state.playerScore);
-  const setPlayerScore = useGame((state) => state.setPlayerScore);
-  const computerScore = useGame((state) => state.computerScore);
-  const setComputerScore = useGame((state) => state.setComputerScore);
 
   useEffect(() => {
     // Round
     let storedRound = window.localStorage.getItem("round");
-    console.log(storedRound);
-
     if (storedRound !== null) {
       setRound(storedRound);
     } else {
-      window.localStorage.setItem("round", 0);
+      window.localStorage.setItem("round", 1);
+    }
+
+    // // Player current score
+    let storedPlayerScore = window.localStorage.getItem("playerScore");
+    if (storedPlayerScore !== null) {
+      setPlayerScore(storedPlayerScore);
+    } else {
+      window.localStorage.setItem("playerScore", 0);
+    }
+
+    // Computer current score
+    let storedComputerScore = window.localStorage.getItem("computerScore");
+    if (storedComputerScore !== null) {
+      setComputerScore(storedComputerScore);
+    } else {
+      window.localStorage.setItem("computerScore", 0);
     }
 
     // // Total wins - player
@@ -97,18 +119,6 @@ export default function Game() {
     // if (computerWinsTotal === null) {
     //   computerWinsTotal = 0;
     //   window.localStorage.setItem("computerWinsTotal", 0);
-    // }
-    // // Player current score
-    // playerScore = window.localStorage.getItem("playerScore");
-    // if (playerScore === null) {
-    //   playerScore = 0;
-    //   window.localStorage.setItem("playerScore", 0);
-    // }
-    // // Computer current score
-    // computerScore = window.localStorage.getItem("computerScore");
-    // if (computerScore === null) {
-    //   computerScore = 0;
-    //   window.localStorage.setItem("computerScore", 0);
     // }
   }, []);
 

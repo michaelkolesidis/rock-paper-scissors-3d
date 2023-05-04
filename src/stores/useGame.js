@@ -12,7 +12,7 @@ export default create(
       resetRound: () => {
         set(() => {
           return {
-            round: 0,
+            round: 1,
           };
         });
       },

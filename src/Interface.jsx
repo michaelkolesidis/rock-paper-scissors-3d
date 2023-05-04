@@ -5,6 +5,8 @@ import useGame from "./stores/useGame.js";
 export default function Interface() {
   // let sound = false;
   const round = useGame((state) => state.round);
+  const playerScore = useGame((state) => state.playerScore);
+  const computerScore = useGame((state) => state.computerScore);
 
   return (
     <>
@@ -19,8 +21,8 @@ export default function Interface() {
       </a>
       <div className="score">
         <div className="individual-score">Round {round}</div>
-        <div className="individual-score">You: 0</div>
-        <div className="individual-score">Computer: 0</div>
+        <div className="individual-score">You: {playerScore}</div>
+        <div className="individual-score">Computer: {computerScore}</div>
       </div>
     </>
   );
