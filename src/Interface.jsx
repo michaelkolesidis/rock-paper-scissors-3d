@@ -17,11 +17,11 @@ export default function Interface() {
       <img className="logo" src={Logo} alt="Rock Paper Scissors 3D Logo" />
       <div className="control-buttons">
         <div className="control-button" id="menu">
-          <img src="./icons/menu.svg" />
+          <img src="./icons/menu.svg" alt="menu" />
         </div>
       </div>
       <a href="https://michaelkolesidis.com" target="_blank">
-        <img className="author" src={MLogo}></img>
+        <img className="author" src={MLogo} alt="author's logo"></img>
       </a>
       <div className="score">
         <div className="individual-score">Round {round}</div>

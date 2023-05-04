@@ -1,7 +1,7 @@
 {
   "name": "rock-paper-scissors-3d",
   "author": "Michael Kolesidis",
-  "private": true,
+  "license": "AGPL-3.0-or-later",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -9,6 +9,10 @@
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelkolesidis/rock-paper-scissors-3d"
   },
   "dependencies": {
     "@react-three/drei": "^9.66.1",
