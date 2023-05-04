@@ -201,6 +201,11 @@ body,
     font-size: 2.75vh;
   }
 
+  .mode-info {
+    top: -1.3vh;
+    font-size: 1.3vh;
+  }
+
   .modal-box {
     width: 75vw;
     height: 70vh;
