@@ -4,6 +4,10 @@
 
 ## Description
 
+## Features
+
+## Roadmap
+
 ## Technologies
 
 The core technologies used are _JavaScript_ and _WebGL_. The following libraries and tools are used:

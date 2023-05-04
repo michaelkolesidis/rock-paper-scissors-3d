@@ -69,6 +69,9 @@ export default function Game() {
       window.localStorage.setItem("playerScore", 0);
       window.localStorage.setItem("computerScore", 0);
       window.localStorage.setItem("phase", "ready");
+      setPlayer(null);
+      setComputer(null);
+      setWinner(null);
     }
 
     if (Number(round) === 2) {
@@ -139,6 +142,9 @@ export default function Game() {
     window.localStorage.setItem("playerScore", 0);
     setComputerScore(0);
     window.localStorage.setItem("computerScore", 0);
+    // setPlayer(null);
+    // setComputer(null);
+    // setWinner(null);
   };
 
   /**
