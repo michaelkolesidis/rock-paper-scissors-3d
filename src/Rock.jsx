@@ -3,20 +3,20 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 
-export const Rock = (props) => {
+export const Rock = forwardRef((props, ref) => {
   const { nodes, materials } = useGLTF("./models/rock.glb");
 
   const rock = useRef();
 
   useFrame((state, delta) => {
-    rock.current.rotation.z += delta * 0.25;
+    rock.current.rotation.y += delta * 0.25;
   });
 
   return (
-    <group {...props} dispose={null}>
+    <group {...props} ref={rock} dispose={null}>
       <mesh
-        ref={rock}
-        name="Rock"
+        ref={ref}
+        name="rock"
         castShadow
         receiveShadow
         geometry={nodes.Rock.geometry}
@@ -26,6 +26,6 @@ export const Rock = (props) => {
       />
     </group>
   );
-};
+});
 
 useGLTF.preload("./models/rock.glb");

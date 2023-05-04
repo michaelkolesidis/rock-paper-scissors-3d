@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 
-export const Paper = (props) => {
+export const Paper = forwardRef((props, ref) => {
   const { nodes, materials } = useGLTF("./models/paper.glb");
 
   const paper = useRef();
@@ -13,10 +13,10 @@ export const Paper = (props) => {
   });
 
   return (
-    <group {...props} dispose={null}>
+    <group {...props} ref={paper} dispose={null}>
       <mesh
-        ref={paper}
-        name="Cube_Cube001"
+        ref={ref}
+        name="paper"
         castShadow
         receiveShadow
         geometry={nodes.Cube_Cube001.geometry}
@@ -24,6 +24,6 @@ export const Paper = (props) => {
       />
     </group>
   );
-};
+});
 
 useGLTF.preload("./models/paper.glb");

@@ -2,6 +2,8 @@
 
 **The classic game of rock, paper, scissors in 3D!**
 
+## Description
+
 ## Technologies
 
 The core technologies used are JavaScript and WebGL. The following libraries and tools are used:

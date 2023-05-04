@@ -18,8 +18,9 @@
   user-select: none;
   -webkit-user-drag: none;
   -moz-user-drag: none;
-  font-family: "SF Pro";
-  
+  /* font-family: "SF Pro"; */
+  font-family: "Nickname";
+  box-sizing: border-box;
 }
 
 html,
@@ -30,8 +31,13 @@ body,
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgb(250, 144, 248);
-  cursor: url("../cursors/windows95-cursor.png"), 
+  background-image: linear-gradient(
+    103.3deg,
+    rgba(252, 225, 208, 1) 30%,
+    rgba(255, 173, 214, 1) 55.7%,
+    rgba(162, 186, 245, 1) 81.8%
+  );
+  /* background: rgb(250, 144, 248); */
 }
 
 /**************/
@@ -55,8 +61,55 @@ body,
   position: fixed;
   bottom: 0;
   right: 0;
-  margin: 0.5em;
-  font-size: min(1.5vw, 2vh);
-  text-shadow: 2px 1px 0 white, -2px -1px 0 white, -2px 1px 0 white, 2px -1px 0 white;
+  margin: 1em;
+  width: min(4vw, 5vh);
+  cursor: pointer;
+  z-index: 2;
+}
 
+/**************/
+/* SCORE      */
+/**************/
+.score {
+  position: fixed;
+  bottom: 0.5vh;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  pointer-events: none;
+}
+
+.individual-score {
+  margin-right: 1.5vw;
+  margin-left: 1.5vw;
+  font-size: min(4vw, 5vh);
+}
+
+/*******************/
+/* CONTROL BUTTONS */
+/*******************/
+.control-buttons {
+  background: #00000000;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  margin: 1.2rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.control-button {
+  border: 3px solid #ffffff;
+  border-radius: 60px;
+  padding: 8px;
+  /* margin-left: 20px; */
+  line-height: 10px;
+  cursor: pointer;
+  /* cursor: url("./cursors/windows95-pointer.png"), pointer; */
+  transition: opacity 0.5s cubic-bezier(0.19, 1.51, 0.29, 0.99);
+}
+
+.control-button:hover {
+  opacity: 0.6;
 }
