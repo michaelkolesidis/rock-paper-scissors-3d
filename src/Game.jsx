@@ -69,6 +69,13 @@ export default function Game() {
   useEffect(() => {
     if (Number(round) === 0) {
       restart();
+      
+      if (window.localStorage.getItem("phase") === "ended") {
+        window.localStorage.setItem("playerScore", 0);
+        window.localStorage.setItem("computerScore", 0);
+        window.localStorage.setItem("phase", "ready");
+      }
+
       setPlayer(null);
       setComputer(null);
       setWinner(null);
