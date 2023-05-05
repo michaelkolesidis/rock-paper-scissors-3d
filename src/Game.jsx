@@ -37,7 +37,7 @@ export default function Game() {
   const setComputerScore = useGame((state) => state.setComputerScore);
   // Total wins
   const playerWinsTotal = useGame((state) => state.playerWinsTotal);
-  const setplayerWinsTotal = useGame((state) => state.setplayerWinsTotal);
+  const setPlayerWinsTotal = useGame((state) => state.setPlayerWinsTotal);
   const computerWinsTotal = useGame((state) => state.computerWinsTotal);
   const setComputerWinsTotal = useGame((state) => state.setComputerWinsTotal);
 
@@ -69,9 +69,6 @@ export default function Game() {
   useEffect(() => {
     if (Number(round) === 0) {
       restart();
-      window.localStorage.setItem("playerScore", 0);
-      window.localStorage.setItem("computerScore", 0);
-      window.localStorage.setItem("phase", "ready");
       setPlayer(null);
       setComputer(null);
       setWinner(null);
@@ -85,9 +82,11 @@ export default function Game() {
     if (Number(playerScore) === limit || Number(computerScore) === limit) {
       end();
       window.localStorage.setItem("phase", "ended");
+      // resetRound();
+      window.localStorage.setItem("round", "0");
 
       if (winner === "player") {
-        setplayerWinsTotal(String(Number(playerWinsTotal) + 1));
+        setPlayerWinsTotal(String(Number(playerWinsTotal) + 1));
         window.localStorage.setItem(
           "playerWinsTotal",
           String(Number(playerWinsTotal) + 1)
@@ -214,6 +213,7 @@ export default function Game() {
     let storedPlayerScore = window.localStorage.getItem("playerScore");
     if (storedPlayerScore !== null) {
       setPlayerScore(storedPlayerScore);
+      console.log("null not 1");
     } else {
       window.localStorage.setItem("playerScore", 0);
     }
@@ -222,6 +222,7 @@ export default function Game() {
     let storedComputerScore = window.localStorage.getItem("computerScore");
     if (storedComputerScore !== null) {
       setComputerScore(storedComputerScore);
+      console.log("null not 2");
     } else {
       window.localStorage.setItem("computerScore", 0);
     }
@@ -229,7 +230,7 @@ export default function Game() {
     // Player total wins
     let storedPlayerWinsTotal = window.localStorage.getItem("playerWinsTotal");
     if (storedPlayerWinsTotal !== null) {
-      setplayerWinsTotal(storedPlayerWinsTotal);
+      setPlayerWinsTotal(storedPlayerWinsTotal);
     } else {
       window.localStorage.setItem("playerWinsTotal", 0);
     }

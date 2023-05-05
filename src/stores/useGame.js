@@ -50,7 +50,7 @@ export default create(
       },
 
       playerWinsTotal: 0,
-      setplayerWinsTotal: (wins) => {
+      setPlayerWinsTotal: (wins) => {
         set(() => {
           return {
             playerWinsTotal: wins,
