@@ -115,7 +115,7 @@ export default function Interface() {
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
             <div className="modal-title">Menu</div>
 
-            <div>
+            <div className="modal-main">
               <div className="section-title">Mode</div>
               <div className="mode-area">{modeOptions}</div>
               <div className="section-title">Data</div>

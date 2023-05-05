@@ -69,7 +69,7 @@ export default function Game() {
   useEffect(() => {
     if (Number(round) === 0) {
       restart();
-      
+
       if (window.localStorage.getItem("phase") === "ended") {
         window.localStorage.setItem("playerScore", 0);
         window.localStorage.setItem("computerScore", 0);
@@ -220,7 +220,6 @@ export default function Game() {
     let storedPlayerScore = window.localStorage.getItem("playerScore");
     if (storedPlayerScore !== null) {
       setPlayerScore(storedPlayerScore);
-      console.log("null not 1");
     } else {
       window.localStorage.setItem("playerScore", 0);
     }
@@ -229,7 +228,6 @@ export default function Game() {
     let storedComputerScore = window.localStorage.getItem("computerScore");
     if (storedComputerScore !== null) {
       setComputerScore(storedComputerScore);
-      console.log("null not 2");
     } else {
       window.localStorage.setItem("computerScore", 0);
     }

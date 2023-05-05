@@ -162,6 +162,8 @@ body,
 
 .mode-area {
   margin-bottom: 4vh;
+  perspective: 1000px;
+  perspective-origin: 50%;
 }
 
 .mode-selection {
@@ -182,6 +184,22 @@ body,
   font-size: min(2vw, 2vh);
   padding: min(1.6vw, 1.6vh) min(3vw, 3vh);
   margin-bottom: 1.5vh;
+}
+
+.mode-selection {
+  transition: transform 0.75s 0.1s cubic-bezier(0.19, 1.51, 0.29, 0.99);
+}
+
+.mode-selection:hover {
+  transform: translateZ(25px);
+}
+
+.modal-button {
+  transition: scale 1s 0.1s cubic-bezier(0.19, 1.51, 0.29, 0.99);
+}
+
+.modal-button:hover {
+  scale: 1.1;
 }
 
 .modal-about-area {
@@ -232,6 +250,10 @@ body,
   .modal-button {
     font-size: 3vh;
     padding: 1vh;
+  }
+  .modal-button:hover,
+  .mode-selection:hover {
+    transform: none;
   }
 
   .modal-about-area {
