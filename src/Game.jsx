@@ -16,30 +16,28 @@ export default function Game() {
   const [winner, setWinner] = useState(null);
 
   const options = ["rock", "paper", "scissors"];
-  // Mode
-  const mode = useGame((state) => state.mode);
-  const setMode = useGame((state) => state.setMode);
-  // Round
-  const round = useGame((state) => state.round);
-  const nextRound = useGame((state) => state.nextRound);
-  const setRound = useGame((state) => state.setRound);
-  const resetRound = useGame((state) => state.resetRound);
-  // Phase
-  const phase = useGame((state) => state.phase);
-  const setPhase = useGame((state) => state.setPhase);
-  const start = useGame((state) => state.start);
-  const restart = useGame((state) => state.restart);
-  const end = useGame((state) => state.end);
-  // Current score
-  const playerScore = useGame((state) => state.playerScore);
-  const setPlayerScore = useGame((state) => state.setPlayerScore);
-  const computerScore = useGame((state) => state.computerScore);
-  const setComputerScore = useGame((state) => state.setComputerScore);
-  // Total wins
-  const playerWinsTotal = useGame((state) => state.playerWinsTotal);
-  const setPlayerWinsTotal = useGame((state) => state.setPlayerWinsTotal);
-  const computerWinsTotal = useGame((state) => state.computerWinsTotal);
-  const setComputerWinsTotal = useGame((state) => state.setComputerWinsTotal);
+
+  const {
+    mode,
+    setMode,
+    round,
+    nextRound,
+    setRound,
+    resetRound,
+    phase,
+    setPhase,
+    start,
+    restart,
+    end,
+    playerScore,
+    setPlayerScore,
+    computerScore,
+    setComputerScore,
+    playerWinsTotal,
+    setPlayerWinsTotal,
+    computerWinsTotal,
+    setComputerWinsTotal,
+  } = useGame();
 
   /**
    * Mode

@@ -8,15 +8,17 @@ import MLogo from "./assets/mm_white.svg";
 import useGame from "./stores/useGame.js";
 
 export default function Interface() {
-  const round = useGame((state) => state.round);
-  const mode = useGame((state) => state.mode);
-  const playerScore = useGame((state) => state.playerScore);
-  const computerScore = useGame((state) => state.computerScore);
-  const restart = useGame((state) => state.restart);
-  const resetRound = useGame((state) => state.resetRound);
-  const setPlayerScore = useGame((state) => state.setPlayerScore);
-  const setComputerScore = useGame((state) => state.setComputerScore);
-  const setMode = useGame((state) => state.setMode);
+  const {
+    mode,
+    setMode,
+    round,
+    resetRound,
+    restart,
+    playerScore,
+    setPlayerScore,
+    computerScore,
+    setComputerScore,
+  } = useGame();
 
   /**
    * Mode
