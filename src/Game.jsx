@@ -11,24 +11,31 @@ import { Scissors } from "./Scissors";
 import useGame from "./stores/useGame.js";
 
 export default function Game() {
-  const [player, setPlayer] = useState(null);
-  const [computer, setComputer] = useState(null);
-  const [winner, setWinner] = useState(null);
-
   const options = ["rock", "paper", "scissors"];
 
   const {
+    // Choices and winner
+    player,
+    setPlayer,
+    computer,
+    setComputer,
+    winner,
+    setWinner,
+    // Mode
     mode,
     setMode,
+    // Round
     round,
     nextRound,
     setRound,
     resetRound,
+    // Phases
     phase,
     setPhase,
     start,
     restart,
     end,
+    // Scoring
     playerScore,
     setPlayerScore,
     computerScore,

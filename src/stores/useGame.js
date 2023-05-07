@@ -9,6 +9,34 @@ export default create(
   subscribeWithSelector((set) => {
     return {
       /**
+       *  Choices and winner
+       */
+      player: null,
+      setPlayer: (choice) => {
+        set(() => {
+          return {
+            player: choice,
+          };
+        });
+      },
+      computer: null,
+      setComputer: (choice) => {
+        set(() => {
+          return {
+            computer: choice,
+          };
+        });
+      },
+      winner: null,
+      setWinner: (w) => {
+        set(() => {
+          return {
+            winner: w,
+          };
+        });
+      },
+
+      /**
        * Round
        */
       round: 0,
@@ -78,6 +106,14 @@ export default create(
           };
         });
       },
+      // modeName: "Five Wins", // "Three Wins", "Seven Wins", "Endless"
+      // setModeName: (name) => {
+      //   set(() => {
+      //     return {
+      //       mode: name,
+      //     };
+      //   });
+      // },
 
       /**
        * Time
