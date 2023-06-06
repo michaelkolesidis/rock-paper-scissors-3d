@@ -48,7 +48,7 @@ All the assets used (3D models, images etc.) are either using Creative Commons /
 
 ## Software Used
 
-A non-exhaustive list of all the software that was used during the development of OKTOWORLD.
+A non-exhaustive list of all the software that was used during the development of _Rock Paper Scissors 3D_.
 
 - Visual Studio Code
 - Figma
