@@ -2,6 +2,8 @@
 
 **The classic game of rock, paper, scissors in 3D!**
 
+<a href='https://ko-fi.com/michaelkolesidis' target='_blank'><img src='https://cdn.ko-fi.com/cdn/kofi1.png' style='border:0px;height:45px;' alt='Buy Me a Coffee at ko-fi.com' /></a>
+
 ## Features
 
 A non-exhaustive list of features:
@@ -66,6 +68,12 @@ Rock Paper Scissors is a hand game played between two people where each player s
 In this 3D version of the game, the player has to pick one of the options by clicking on the respective object. Upon clicking, the computer makes its choice, and the result of the round can be seen immediately on screen.
 
 The winner of the game is determined by a set of rules: rock crushes scissors, scissors cuts paper, and paper covers rock. If both players choose the same shape, the game is tied and played again.
+
+## 💖 Support the Project
+
+Thank you so much for your interest in my project! If you want to go a step further and support my open source work, buy me a coffee:
+
+<a href='https://ko-fi.com/michaelkolesidis' target='_blank'><img src='https://cdn.ko-fi.com/cdn/kofi1.png' style='border:0px;height:45px;' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ## License
 
