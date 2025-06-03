@@ -1,9 +1,9 @@
-// Copyright (c) 2023 Michael Kolesidis <michael.kolesidis@gmail.com>
+// Copyright (c) Michael Kolesidis <michael.kolesidis@gmail.com>
 // Licensed under the GNU Affero General Public License v3.0.
 // https://www.gnu.org/licenses/gpl-3.0.html
 
-import { create } from "zustand";
-import { subscribeWithSelector } from "zustand/middleware";
+import { create } from 'zustand';
+import { subscribeWithSelector } from 'zustand/middleware';
 
 export default create(
   subscribeWithSelector((set) => {
@@ -98,7 +98,7 @@ export default create(
       /**
        * Game mode
        */
-      mode: "fiveWins", // "threeWins", "sevenWins", "endless"
+      mode: 'fiveWins', // "threeWins", "sevenWins", "endless"
       setMode: (gameMode) => {
         set(() => {
           return {
@@ -124,7 +124,7 @@ export default create(
       /**
        * Phases
        */
-      phase: "ready", // "playing", "ended"
+      phase: 'ready', // "playing", "ended"
 
       setPhase: (gamePhase) => {
         set(() => {
@@ -136,9 +136,9 @@ export default create(
 
       start: () => {
         set((state) => {
-          if (state.phase === "ready") {
+          if (state.phase === 'ready') {
             return {
-              phase: "playing",
+              phase: 'playing',
               // startTime: Date.now()
             };
           }
@@ -148,8 +148,8 @@ export default create(
 
       restart: () => {
         set((state) => {
-          if (state.phase === "playing" || state.phase === "ended") {
-            return { phase: "ready" };
+          if (state.phase === 'playing' || state.phase === 'ended') {
+            return { phase: 'ready' };
           }
           return {};
         });
@@ -157,9 +157,9 @@ export default create(
 
       end: () => {
         set((state) => {
-          if (state.phase === "playing") {
+          if (state.phase === 'playing') {
             return {
-              phase: "ended",
+              phase: 'ended',
               // endTime: Date.now()
             };
           }

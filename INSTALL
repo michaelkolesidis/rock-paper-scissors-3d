@@ -1,0 +1,1 @@
+yarn add @react-three/drei @react-three/fiber react react-dom three zustand && yarn add -D @types/react @types/react-dom @vitejs/plugin-react eslint eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh vite

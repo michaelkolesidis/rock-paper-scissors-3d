@@ -1,11 +1,11 @@
-// Copyright (c) 2023 Michael Kolesidis <michael.kolesidis@gmail.com>
+// Copyright (c) Michael Kolesidis <michael.kolesidis@gmail.com>
 // Licensed under the GNU Affero General Public License v3.0.
 // https://www.gnu.org/licenses/gpl-3.0.html
 
-import { useEffect, useState } from "react";
-import Logo from "./assets/rps3d.svg";
-import MLogo from "./assets/mm_white.svg";
-import useGame from "./stores/useGame.js";
+import { useEffect, useState } from 'react';
+import Logo from './assets/rps3d.svg';
+import MLogo from './assets/mm_white.svg';
+import useGame from './stores/useGame.js';
 
 export default function Interface() {
   const {
@@ -27,17 +27,17 @@ export default function Interface() {
 
   useEffect(() => {
     switch (mode) {
-      case "threeWins":
-        setModeName("Three Wins");
+      case 'threeWins':
+        setModeName('Three Wins');
         break;
-      case "fiveWins":
-        setModeName("Five Wins");
+      case 'fiveWins':
+        setModeName('Five Wins');
         break;
-      case "sevenWins":
-        setModeName("Seven Wins");
+      case 'sevenWins':
+        setModeName('Seven Wins');
         break;
-      case "endless":
-        setModeName("endless");
+      case 'endless':
+        setModeName('endless');
         break;
     }
   }, [mode]);
@@ -66,22 +66,22 @@ export default function Interface() {
   }
 
   let modes = [
-    { id: "0", text: "Three Wins", name: "threeWins" },
-    { id: "1", text: "Five Wins", name: "fiveWins" },
-    { id: "2", text: "Seven Wins", name: "sevenWins" },
-    { id: "3", text: "Endless", name: "endless" },
+    { id: '0', text: 'Three Wins', name: 'threeWins' },
+    { id: '1', text: 'Five Wins', name: 'fiveWins' },
+    { id: '2', text: 'Seven Wins', name: 'sevenWins' },
+    { id: '3', text: 'Endless', name: 'endless' },
   ];
 
   const modeOptions = modes.map((mode) => (
     <div
       key={mode.id}
       className={`mode-selection ${
-        selectedMode && selectedMode.name === mode.name ? "selected-mode" : ""
+        selectedMode && selectedMode.name === mode.name ? 'selected-mode' : ''
       }`}
       onClick={() => {
         handleModeClick(mode);
         setMode(mode.name);
-        window.localStorage.setItem("mode", mode.name);
+        window.localStorage.setItem('mode', mode.name);
         handleRestart();
       }}
     >
@@ -132,8 +132,8 @@ export default function Interface() {
               </div>
             </div>
             <div className="modal-about-area">
-              <div className="modal-about">© 2023 Michael Kolesidis.</div>
-              <div className="modal-about">Licensed under the GNU AGPL 3.0</div>
+              <div className="modal-about">© Michael Kolesidis.</div>
+              <div className="modal-about">Licensed under AGPL 3.0</div>
             </div>
           </div>
         </div>

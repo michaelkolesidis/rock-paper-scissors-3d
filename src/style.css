@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Nickname";
-  src: url("../fonts/nickname.otf");
+  font-family: 'Nickname';
+  src: url('../fonts/nickname.otf');
 }
 
 /***********/
@@ -18,7 +18,7 @@
   user-select: none;
   -webkit-user-drag: none;
   -moz-user-drag: none;
-  font-family: "Nickname";
+  font-family: 'Nickname';
   box-sizing: border-box;
   color: var(--black);
   -webkit-tap-highlight-color: transparent; /* for removing the highlight on Android */
@@ -57,7 +57,7 @@ body,
 /* AUTHOR     */
 /**************/
 .author {
-  font-family: "Nickname";
+  font-family: 'Nickname';
   position: fixed;
   bottom: 0;
   right: 0;
